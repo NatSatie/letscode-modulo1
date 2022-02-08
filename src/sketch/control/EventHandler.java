@@ -1,6 +1,6 @@
-package control;
+package sketch.control;
 
-import client.person.PersonType;
+import sketch.client.person.PersonType;
 
 import java.util.Scanner;
 
@@ -30,6 +30,14 @@ public class EventHandler {
         } else {
             System.out.println("Pessoa invalida");
             return PersonType.INVALID;
+        }
+    }
+
+    public static void receiveCommands(Scanner reader){
+        String command = "";
+        while(!command.equals("0")){
+            MessagesHandler.showCommands();
+            command = EventHandler.command(reader);
         }
     }
 

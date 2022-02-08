@@ -1,4 +1,4 @@
-package client.person;
+package sketch.client.person;
 
 public class Person {
     private String name;

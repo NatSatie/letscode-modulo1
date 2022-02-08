@@ -1,9 +1,9 @@
-package control;
+package sketch.control;
 
-import client.Client;
-import client.person.PersonType;
+import sketch.client.Client;
+import sketch.client.person.PersonType;
 
-public final class MessagesHandler {
+public class MessagesHandler {
 
     public static void introductionApp(){
         System.out.println("**** Aplicativo de Banco Natália Satie ****");

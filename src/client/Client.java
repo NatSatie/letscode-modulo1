@@ -1,26 +1,22 @@
 package client;
 
-import client.person.Person;
-import client.person.PersonType;
+import account.Account;
 
-import java.math.BigDecimal;
+import java.util.ArrayList;
 
 public class Client {
-    private Person person;
-    private BigDecimal saldo;
-    private PersonType personType;
+    private Person client;
+    private ArrayList<Account> accounts = new ArrayList<Account>();
 
-    public Client(String name, String document, PersonType personType){
-        this.person = new Person(name, document, personType);
-        this.saldo = BigDecimal.ZERO;
+    public Client(Person client){
+        this.client = client;
     }
 
-     public String getClientName(){
-        return person.getName();
-     }
+    public Person getClient() {
+        return client;
+    }
 
-     public Person getPerson(){
-        return this.person;
-     }
-
+    public ArrayList<Account> getAccounts() {
+        return accounts;
+    }
 }

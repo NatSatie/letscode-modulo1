@@ -1,6 +1,7 @@
 package event;
 
 import client.Client;
+import com.company.AppSystem;
 
 public class LoginEvent extends EventHandler {
     public LoginEvent(String document){
@@ -13,12 +14,19 @@ public class LoginEvent extends EventHandler {
 
     @Override
     public void next(){
-        super.user = new RegisterEvent(super.document).createUser();
+        if (AppSystem.searchUser(super.document) == null){
+            super.user = new RegisterEvent(super.document).createUser();
+        }
     }
 
     public Client loginUser(){
         System.out.println("     # do documento " + super.document);
-        this.next();
+        Client searchUser = AppSystem.searchUser(super.document);
+        if (searchUser == null){
+            super.user = new RegisterEvent(super.document).createUser();
+        } else {
+            super.user = searchUser;
+        }
         return super.user;
     }
 }

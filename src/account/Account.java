@@ -15,4 +15,16 @@ public class Account {
         this.balance = balance;
         this.earningPercentage = earningPercentage;
     }
+    
+    public BigDecimal getBalance(){
+        return this.balance;
+    }
+
+    public void addBalance(BigDecimal value){
+        this.balance = this.balance.add(value);
+    }
+
+    public void removeBalance(BigDecimal value){
+        this.balance = this.balance.subtract(value);
+    }
 }

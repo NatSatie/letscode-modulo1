@@ -1,6 +1,7 @@
 package event;
 
 import client.Client;
+import com.company.AppSystem;
 
 import java.util.Scanner;
 

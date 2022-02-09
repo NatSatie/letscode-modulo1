@@ -11,6 +11,10 @@ public class Client {
     public Client(Person client){
         this.client = client;
     }
+    public Client(Person client, ArrayList<Account> accounts){
+        this.client = client;
+        this.accounts = accounts;
+    }
 
     public Person getClient() {
         return client;
@@ -18,5 +22,9 @@ public class Client {
 
     public ArrayList<Account> getAccounts() {
         return accounts;
+    }
+
+    public void addAccount(Account newAccount) {
+        this.accounts.add(newAccount);
     }
 }

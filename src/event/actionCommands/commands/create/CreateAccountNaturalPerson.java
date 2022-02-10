@@ -1,15 +1,46 @@
 package event.actionCommands.commands.create;
 
+import account.CheckingAccount;
+import account.InvestAccount;
+import account.SavingsAccount;
 import client.Client;
+import com.company.AppSystem;
+import event.actionCommands.commands.CommandAction;
 import event.actionCommands.commands.receive.ReceiveCommand;
 import event.actionCommands.enums.CreateCommandNaturalPerson;
 
 import java.math.BigDecimal;
 
 
-public class CreateAccountNaturalPerson extends CreateAccount {
+public class CreateAccountNaturalPerson extends CommandAction implements CreateAccountInterface {
     public CreateAccountNaturalPerson(Client user){
         super(user);
+    }
+
+    public void createCheckingAccount(){
+        super.user.addAccount(new CheckingAccount(BigDecimal.ZERO));
+        AppSystem.addClient(super.user);
+        System.out.println("    Conta corrente criada com sucesso!");
+    }
+
+    public void createSavingsAccount(){
+        super.user.addAccount(new SavingsAccount(BigDecimal.valueOf(0.01)));
+        AppSystem.addClient(super.user);
+        System.out.println("    Conta poupanca criada com sucesso!");
+    }
+
+    public void createInvestAccount(){
+        super.user.addAccount(new InvestAccount(BigDecimal.valueOf(0.03)));
+        AppSystem.addClient(super.user);
+        System.out.println("    Conta investimento criada com sucesso!");
+    }
+
+    public void createAll(){
+        super.user.addAccount(new CheckingAccount(BigDecimal.ZERO));
+        super.user.addAccount(new SavingsAccount(BigDecimal.valueOf(0.01)));
+        super.user.addAccount(new InvestAccount(BigDecimal.valueOf(0.03)));
+        AppSystem.addClient(super.user);
+        System.out.println("    Conta corrente, poupanca e investimento criadas com sucesso!");
     }
 
     @Override
@@ -17,19 +48,19 @@ public class CreateAccountNaturalPerson extends CreateAccount {
         this.message();
         super.receiveInput();
         if (super.command.equals(CreateCommandNaturalPerson.CHECKING.getCommand())){
-            super.createCheckingAccount();
+            this.createCheckingAccount();
             new ReceiveCommand(super.user).action();
         } else if (super.command.equals(CreateCommandNaturalPerson.SAVINGS.getCommand())) {
-            super.createSavingsAccount(BigDecimal.valueOf(0.01));
+            this.createSavingsAccount();
             new ReceiveCommand(super.user).action();
         } else if (super.command.equals(CreateCommandNaturalPerson.INVEST.getCommand())) {
-            super.createInvestAccount(BigDecimal.valueOf(0.03));
+            this.createInvestAccount();
             new ReceiveCommand(super.user).action();
         } else if (super.command.equals(CreateCommandNaturalPerson.ALL.getCommand())){
-            super.createAllNatural(BigDecimal.valueOf(0.01), BigDecimal.valueOf(0.03));
+            this.createAll();
             new ReceiveCommand(super.user).action();
         } else if (super.command.equals(CreateCommandNaturalPerson.QUIT.getCommand())){
-            super.exit();
+            this.exit();
         } else {
             this.action();
         }

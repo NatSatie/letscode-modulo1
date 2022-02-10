@@ -1,6 +1,7 @@
 package event;
 
 import client.Client;
+import client.LegalPerson;
 import client.NaturalPerson;
 
 public class RegisterEvent extends EventHandler {
@@ -22,7 +23,7 @@ public class RegisterEvent extends EventHandler {
             return createNaturalPerson();
         } else if (input.equals("J")){
             System.out.println("**** Cadastro de pessoa juridica ****");
-            return null;
+            return createLegalPerson();
         } else {
             System.out.println("**** Input invalido, tente novamente ****");
             this.createUser();
@@ -33,5 +34,11 @@ public class RegisterEvent extends EventHandler {
         System.out.println("     Digite seu nome:");
         String name = reader.next();
         return new Client(new NaturalPerson(super.document, name));
+    }
+
+    public Client createLegalPerson(){
+        System.out.println("     Digite nome da empresa:");
+        String name = reader.next();
+        return new Client(new LegalPerson(super.document, name));
     }
 }

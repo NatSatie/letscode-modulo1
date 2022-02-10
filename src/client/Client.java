@@ -53,7 +53,9 @@ public class Client {
             if (a instanceof CheckingAccount){
                 return a;
             }
-        } return null;
+        }
+        System.out.println("    Usuario nao tem uma conta corrente");
+        return null;
     }
 
     public Account getSavingsAccount(){
@@ -61,7 +63,9 @@ public class Client {
             if (a instanceof SavingsAccount){
                 return a;
             }
-        } return null;
+        }
+        System.out.println("    Usuario nao tem uma conta poupanca");
+        return null;
     }
 
     public Account getInvestAccount(){
@@ -69,6 +73,8 @@ public class Client {
             if (a instanceof InvestAccount){
                 return a;
             }
-        } return null;
+        }
+        System.out.println("    Usuario nao tem uma conta investimentos");
+        return null;
     }
 }
